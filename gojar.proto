@@ -1,0 +1,15 @@
+syntax = "proto3";
+package gojar;
+option go_package = "gojar";
+
+service API {
+    rpc ProxyURL(ProxyURLRequest) returns (ProxyURLResponse);
+}
+
+message ProxyURLRequest {
+    string proxyToken = 1;
+}
+
+message ProxyURLResponse {
+    string URL = 1;
+}
