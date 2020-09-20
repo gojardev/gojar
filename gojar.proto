@@ -3,13 +3,14 @@ package gojar;
 option go_package = "gojar";
 
 service API {
-    rpc ProxyURL(ProxyURLRequest) returns (ProxyURLResponse);
+    rpc Proxy(ProxyRequest) returns (ProxyResponse);
 }
 
-message ProxyURLRequest {
+message ProxyRequest {
     string proxyToken = 1;
 }
 
-message ProxyURLResponse {
+message ProxyResponse {
     string URL = 1;
+    repeated string privatePaths = 2;
 }
