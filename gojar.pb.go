@@ -20,87 +20,95 @@ var _ = math.Inf
 // proto package needs to be updated.
 const _ = proto.ProtoPackageIsVersion3 // please upgrade the proto package
 
-type ProxyURLRequest struct {
+type ProxyRequest struct {
 	ProxyToken           string   `protobuf:"bytes,1,opt,name=proxyToken,proto3" json:"proxyToken,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
 	XXX_sizecache        int32    `json:"-"`
 }
 
-func (m *ProxyURLRequest) Reset()         { *m = ProxyURLRequest{} }
-func (m *ProxyURLRequest) String() string { return proto.CompactTextString(m) }
-func (*ProxyURLRequest) ProtoMessage()    {}
-func (*ProxyURLRequest) Descriptor() ([]byte, []int) {
+func (m *ProxyRequest) Reset()         { *m = ProxyRequest{} }
+func (m *ProxyRequest) String() string { return proto.CompactTextString(m) }
+func (*ProxyRequest) ProtoMessage()    {}
+func (*ProxyRequest) Descriptor() ([]byte, []int) {
 	return fileDescriptor_3d738b230e7bb319, []int{0}
 }
 
-func (m *ProxyURLRequest) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_ProxyURLRequest.Unmarshal(m, b)
+func (m *ProxyRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_ProxyRequest.Unmarshal(m, b)
 }
-func (m *ProxyURLRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_ProxyURLRequest.Marshal(b, m, deterministic)
+func (m *ProxyRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_ProxyRequest.Marshal(b, m, deterministic)
 }
-func (m *ProxyURLRequest) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_ProxyURLRequest.Merge(m, src)
+func (m *ProxyRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_ProxyRequest.Merge(m, src)
 }
-func (m *ProxyURLRequest) XXX_Size() int {
-	return xxx_messageInfo_ProxyURLRequest.Size(m)
+func (m *ProxyRequest) XXX_Size() int {
+	return xxx_messageInfo_ProxyRequest.Size(m)
 }
-func (m *ProxyURLRequest) XXX_DiscardUnknown() {
-	xxx_messageInfo_ProxyURLRequest.DiscardUnknown(m)
+func (m *ProxyRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_ProxyRequest.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_ProxyURLRequest proto.InternalMessageInfo
+var xxx_messageInfo_ProxyRequest proto.InternalMessageInfo
 
-func (m *ProxyURLRequest) GetProxyToken() string {
+func (m *ProxyRequest) GetProxyToken() string {
 	if m != nil {
 		return m.ProxyToken
 	}
 	return ""
 }
 
-type ProxyURLResponse struct {
+type ProxyResponse struct {
 	URL                  string   `protobuf:"bytes,1,opt,name=URL,proto3" json:"URL,omitempty"`
+	PrivatePaths         []string `protobuf:"bytes,2,rep,name=privatePaths,proto3" json:"privatePaths,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
 	XXX_sizecache        int32    `json:"-"`
 }
 
-func (m *ProxyURLResponse) Reset()         { *m = ProxyURLResponse{} }
-func (m *ProxyURLResponse) String() string { return proto.CompactTextString(m) }
-func (*ProxyURLResponse) ProtoMessage()    {}
-func (*ProxyURLResponse) Descriptor() ([]byte, []int) {
+func (m *ProxyResponse) Reset()         { *m = ProxyResponse{} }
+func (m *ProxyResponse) String() string { return proto.CompactTextString(m) }
+func (*ProxyResponse) ProtoMessage()    {}
+func (*ProxyResponse) Descriptor() ([]byte, []int) {
 	return fileDescriptor_3d738b230e7bb319, []int{1}
 }
 
-func (m *ProxyURLResponse) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_ProxyURLResponse.Unmarshal(m, b)
+func (m *ProxyResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_ProxyResponse.Unmarshal(m, b)
 }
-func (m *ProxyURLResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_ProxyURLResponse.Marshal(b, m, deterministic)
+func (m *ProxyResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_ProxyResponse.Marshal(b, m, deterministic)
 }
-func (m *ProxyURLResponse) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_ProxyURLResponse.Merge(m, src)
+func (m *ProxyResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_ProxyResponse.Merge(m, src)
 }
-func (m *ProxyURLResponse) XXX_Size() int {
-	return xxx_messageInfo_ProxyURLResponse.Size(m)
+func (m *ProxyResponse) XXX_Size() int {
+	return xxx_messageInfo_ProxyResponse.Size(m)
 }
-func (m *ProxyURLResponse) XXX_DiscardUnknown() {
-	xxx_messageInfo_ProxyURLResponse.DiscardUnknown(m)
+func (m *ProxyResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_ProxyResponse.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_ProxyURLResponse proto.InternalMessageInfo
+var xxx_messageInfo_ProxyResponse proto.InternalMessageInfo
 
-func (m *ProxyURLResponse) GetURL() string {
+func (m *ProxyResponse) GetURL() string {
 	if m != nil {
 		return m.URL
 	}
 	return ""
 }
 
+func (m *ProxyResponse) GetPrivatePaths() []string {
+	if m != nil {
+		return m.PrivatePaths
+	}
+	return nil
+}
+
 func init() {
-	proto.RegisterType((*ProxyURLRequest)(nil), "gojar.ProxyURLRequest")
-	proto.RegisterType((*ProxyURLResponse)(nil), "gojar.ProxyURLResponse")
+	proto.RegisterType((*ProxyRequest)(nil), "gojar.ProxyRequest")
+	proto.RegisterType((*ProxyResponse)(nil), "gojar.ProxyResponse")
 }
 
 func init() {
@@ -108,14 +116,16 @@ func init() {
 }
 
 var fileDescriptor_3d738b230e7bb319 = []byte{
-	// 141 bytes of a gzipped FileDescriptorProto
+	// 163 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xe2, 0xe2, 0x4e, 0xcf, 0xcf, 0x4a,
-	0x2c, 0xd2, 0x2b, 0x28, 0xca, 0x2f, 0xc9, 0x17, 0x62, 0x05, 0x73, 0x94, 0x0c, 0xb9, 0xf8, 0x03,
-	0x8a, 0xf2, 0x2b, 0x2a, 0x43, 0x83, 0x7c, 0x82, 0x52, 0x0b, 0x4b, 0x53, 0x8b, 0x4b, 0x84, 0xe4,
-	0xb8, 0xb8, 0x0a, 0x40, 0x42, 0x21, 0xf9, 0xd9, 0xa9, 0x79, 0x12, 0x8c, 0x0a, 0x8c, 0x1a, 0x9c,
-	0x41, 0x48, 0x22, 0x4a, 0x2a, 0x5c, 0x02, 0x08, 0x2d, 0xc5, 0x05, 0xf9, 0x79, 0xc5, 0xa9, 0x42,
-	0x02, 0x5c, 0xcc, 0xa1, 0x41, 0x3e, 0x50, 0xc5, 0x20, 0xa6, 0x91, 0x13, 0x17, 0xb3, 0x63, 0x80,
-	0xa7, 0x90, 0x35, 0x17, 0x07, 0x4c, 0xb1, 0x90, 0x98, 0x1e, 0xc4, 0x01, 0x68, 0x16, 0x4a, 0x89,
-	0x63, 0x88, 0x43, 0x4c, 0x75, 0x62, 0x8f, 0x82, 0xb8, 0x32, 0x89, 0x0d, 0xec, 0x66, 0x63, 0x40,
-	0x00, 0x00, 0x00, 0xff, 0xff, 0xae, 0xbd, 0x3e, 0x74, 0xc2, 0x00, 0x00, 0x00,
+	0x2c, 0xd2, 0x2b, 0x28, 0xca, 0x2f, 0xc9, 0x17, 0x62, 0x05, 0x73, 0x94, 0xf4, 0xb8, 0x78, 0x02,
+	0x8a, 0xf2, 0x2b, 0x2a, 0x83, 0x52, 0x0b, 0x4b, 0x53, 0x8b, 0x4b, 0x84, 0xe4, 0xb8, 0xb8, 0x0a,
+	0x40, 0xfc, 0x90, 0xfc, 0xec, 0xd4, 0x3c, 0x09, 0x46, 0x05, 0x46, 0x0d, 0xce, 0x20, 0x24, 0x11,
+	0x25, 0x57, 0x2e, 0x5e, 0xa8, 0xfa, 0xe2, 0x82, 0xfc, 0xbc, 0xe2, 0x54, 0x21, 0x01, 0x2e, 0xe6,
+	0xd0, 0x20, 0x1f, 0xa8, 0x4a, 0x10, 0x53, 0x48, 0x89, 0x8b, 0xa7, 0xa0, 0x28, 0xb3, 0x2c, 0xb1,
+	0x24, 0x35, 0x20, 0xb1, 0x24, 0xa3, 0x58, 0x82, 0x49, 0x81, 0x59, 0x83, 0x33, 0x08, 0x45, 0xcc,
+	0xc8, 0x92, 0x8b, 0xd9, 0x31, 0xc0, 0x53, 0xc8, 0x88, 0x8b, 0x15, 0x6c, 0x9a, 0x90, 0xb0, 0x1e,
+	0xc4, 0x6d, 0xc8, 0x6e, 0x91, 0x12, 0x41, 0x15, 0x84, 0x58, 0xe8, 0xc4, 0x1e, 0x05, 0x71, 0x7a,
+	0x12, 0x1b, 0xd8, 0x23, 0xc6, 0x80, 0x00, 0x00, 0x00, 0xff, 0xff, 0x87, 0x70, 0x05, 0xfc, 0xd7,
+	0x00, 0x00, 0x00,
 }
