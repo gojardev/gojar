@@ -88,7 +88,7 @@ func login(c *cli.Context) error {
 		}
 	}
 	gojarClient := gojar.NewAPIProtobufClient(registry, http.DefaultClient)
-	resp, err := gojarClient.ProxyURL(c.Context, &gojar.ProxyURLRequest{ProxyToken: token})
+	resp, err := gojarClient.Proxy(c.Context, &gojar.ProxyRequest{ProxyToken: token})
 	if err != nil {
 		// TODO: nicer message when invalid auth
 		return fmt.Errorf("error authenticating: %w", err)
@@ -99,8 +99,12 @@ func login(c *cli.Context) error {
 		return fmt.Errorf("error parsing %q: %w", proxyURL, err)
 	}
 	writeNETRC(url.Hostname(), "gojar", token, "")
-	// TODO: integrate with existing GOPROXY instead of overriding everything
-	cmd := exec.CommandContext(c.Context, "go", "env", "-w", fmt.Sprintf("GOPROXY=%s", proxyURL))
+	// TODO: integrate with existing GOPROXY/GONOSUMDB instead of overriding everything
+	args := []string{"env", "-w", fmt.Sprintf("GOPROXY=%s", proxyURL)}
+	if privatePaths := resp.GetPrivatePaths(); len(privatePaths) > 0 {
+		args = append(args, fmt.Sprintf("GONOSUMDB=%s", strings.Join(privatePaths, ",")))
+	}
+	cmd := exec.CommandContext(c.Context, "go", args...)
 	cmd.Stdout = os.Stdout
 	cmd.Stderr = os.Stderr
 	err = cmd.Run()
