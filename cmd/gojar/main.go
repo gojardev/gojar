@@ -24,7 +24,7 @@ func main() {
 						Name:    "registry",
 						Aliases: []string{"r"},
 						Usage:   "The registry URL to verify your login credentials and retrieve your GOPROXY URL",
-						// Value:   "", // TODO: gojar service url
+						Value:   "https://api---moguapi-o2bdqodsnq-uc.a.run.app/", // TODO: gojar service url
 					},
 					&cli.BoolFlag{
 						Name:  "token-stdin",
